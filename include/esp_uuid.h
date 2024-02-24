@@ -12,6 +12,8 @@ extern "C" {
 /**
  * Writes a formatted, newly and randomly generated uuidv4 to "out" and adds NUL terminator to it.
  * 
+ * The uuidv4 generated complies with format specified in RFC 4122 Section 4.
+ * 
  * @param out Pointer to a buffer of characters
  * @param out_len Length of "out" in bytes, must be greater or equal than 37
  * @returns
@@ -22,7 +24,10 @@ extern "C" {
 esp_err_t uuidv4_new_string(char *out, size_t out_len);
 
 /**
- * Writes a raw, unformatted, newly and randomly generated uuidv4 to "out"
+ * Writes a raw, unformatted, newly and randomly generated uuidv4 to "out".
+ * 
+ * The uuidv4 generated complies with RFC 4122 Section 4 specification.
+ * 
  * @param out Pointer to a buffer of bytes
  * @param out_len Lenght of "out" in bytes, must be greater or equal than 16
  * @returns
