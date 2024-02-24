@@ -45,7 +45,7 @@ esp_err_t uuidv4_new(uint8_t *out, size_t out_len);
  * 
  * Compatible with any uuid version.
  * 
- * @param uid Pointer to raw uuid
+ * @param uid Pointer to raw uuid buffer, must point to 16 bytes lenght buffer
  * @param out Pointer to buffer of characters
  * @param out_let Lenght of "out" in bytes, must be greater or equal than 37
  * @returns
