@@ -55,7 +55,7 @@ esp_err_t uuid_to_string(const uint8_t *uid, char *out, size_t out_len) {
     }
 
     // https://gitlab.gnome.org/GNOME/glib/-/blame/main/glib/guuid.c?ref_type=heads#L58
-    snprintf(out, 37, "%02x%02x%02x%02x-%02x%02x-%02x%02x-%02x%02x-%02x%02x%02x%02x%02x%02x",
+    snprintf(out, out_len, "%02x%02x%02x%02x-%02x%02x-%02x%02x-%02x%02x-%02x%02x%02x%02x%02x%02x",
              uid[0], uid[1], uid[2], uid[3],
              uid[4], uid[5],
              uid[6], uid[7],
