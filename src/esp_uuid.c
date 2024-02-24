@@ -61,4 +61,6 @@ esp_err_t uuid_to_string(const uint8_t *uid, char *out, size_t out_len) {
              uid[6], uid[7],
              uid[8], uid[9],
              uid[10], uid[11], uid[12], uid[13], uid[14], uid[15]);
+
+    return ESP_OK;
 }
