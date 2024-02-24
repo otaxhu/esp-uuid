@@ -1,4 +1,4 @@
-# esp-uuid: Library to manipulate and generate UUIDs. Compatible with ESP-IDF
+# Library to manipulate and generate UUIDs. Compatible with ESP-IDF
 
 ## Installation:
 1. Create a project directory, inside of a directory create the `main` and `components` directories:
