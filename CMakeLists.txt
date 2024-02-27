@@ -10,4 +10,4 @@ message(STATUS "'${IDF_TARGET}' target")
 idf_component_register(SRCS "src/esp_uuid.c"
                        INCLUDE_DIRS "include")
 
-target_compile_options(${COMPONENT_LIB} INTERFACE -Wno-error)
+target_compile_options(${COMPONENT_LIB} PRIVATE "-Wno-parentheses")
