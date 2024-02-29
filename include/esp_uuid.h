@@ -19,7 +19,6 @@ extern "C" {
  * @returns
  *  - ESP_OK on success
  *  - ESP_ERR_INVALID_ARG if "out" is NULL or "out_len" is less than 37
- *  - ESP_ERR_NO_MEM if there was no available memory to allocate random bytes (internal error)
 */
 esp_err_t uuidv4_new_string(char *out, size_t out_len);
 

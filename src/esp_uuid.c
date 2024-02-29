@@ -24,28 +24,22 @@ esp_err_t uuidv4_new(uint8_t *out, size_t out_len) {
 esp_err_t uuidv4_new_string(char *out, size_t out_len) {
 
     esp_err_t err = ESP_OK;
-    uint8_t *rand_buf = NULL;
 
     if (out == NULL || out_len < 37) {
         err = ESP_ERR_INVALID_ARG;
         goto exit;
     }
 
-    rand_buf = malloc(16);
-    if (rand_buf == NULL) {
-        err = ESP_ERR_NO_MEM;
+    // Using the same buffer "out" to store the uuid in raw format
+    if (err = uuidv4_new((uint8_t *)out, out_len)) {
         goto exit;
     }
 
-    if (err = uuidv4_new(rand_buf, 16)) {
-        goto exit;
-    }
-
-    if (err = uuid_to_string(rand_buf, out, out_len)) {
+    // Function uuid_to_string already extracts the values from "out" before writing to it
+    if (err = uuid_to_string((const uint8_t *)out, out, out_len)) {
         goto exit;
     }
 exit:
-    free(rand_buf);
     return err;
 }
 
