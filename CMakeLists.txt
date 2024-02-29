@@ -5,8 +5,6 @@ if(${IDF_TARGET} STREQUAL "esp32p4")
                         "Aborting compilation of '${COMPONENT_NAME}'...")
 endif()
 
-message(STATUS "'${IDF_TARGET}' target")
-
 idf_component_register(SRCS "src/esp_uuid.c"
                        INCLUDE_DIRS "include")
 
