@@ -4,7 +4,7 @@
 #include <stdio.h>
 
 esp_err_t uuidv4_new(uint8_t *out, size_t out_len) {
-    if (out == NULL || out_len < 16) {
+    if (out == NULL || out_len < UUID_SIZE) {
         return ESP_ERR_INVALID_ARG;
     }
 
@@ -27,7 +27,7 @@ esp_err_t uuidv4_new_string(char *out, size_t out_len) {
 
     esp_err_t err = ESP_OK;
 
-    if (out == NULL || out_len < UUID_SIZE_STR) {
+    if (out == NULL || out_len < UUID_SIZE_STR + 1) {
         err = ESP_ERR_INVALID_ARG;
         goto exit;
     }
@@ -46,7 +46,7 @@ exit:
 }
 
 esp_err_t uuid_to_string(const uint8_t *in, char *out, size_t out_len) {
-    if (in == NULL || out == NULL || out_len < UUID_SIZE_STR) {
+    if (in == NULL || out == NULL || out_len < UUID_SIZE_STR + 1) {
         return ESP_ERR_INVALID_ARG;
     }
 
@@ -75,7 +75,7 @@ esp_err_t uuid_from_string(const char *in, uint8_t *out, size_t out_len) {
            &out[8], &out[9],
            &out[10], &out[11], &out[12], &out[13], &out[14], &out[15], &n);
 
-    if (n != 36 || in[n] != '\0') {
+    if (n != UUID_SIZE_STR || in[n] != '\0') {
         return ESP_ERR_INVALID_ARG;
     }
 
