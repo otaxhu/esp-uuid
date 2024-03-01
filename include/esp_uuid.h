@@ -12,7 +12,7 @@ extern "C" {
 /* =============== MACROS =============== */
 
 #define UUID_SIZE     16 // size of raw uuid's in bytes
-#define UUID_SIZE_STR 37 // size of formatted uuid's in bytes; 36 characters + NUL terminator = 37 bytes
+#define UUID_SIZE_STR 36 // size of formatted uuid's in bytes. not including the NUL terminator
 
 /* =============== FUNCTIONS =============== */
 
@@ -22,10 +22,10 @@ extern "C" {
  * The uuidv4 generated complies with format specified in RFC 4122 Section 4.
  * 
  * @param out Pointer to a buffer of characters
- * @param out_len Length of "out" in bytes, must be greater or equal than UUID_SIZE_STR
+ * @param out_len Length of "out" in bytes, must be greater or equal than UUID_SIZE_STR + 1
  * @returns
  *  - ESP_OK on success
- *  - ESP_ERR_INVALID_ARG if "out" is NULL or "out_len" is less than UUID_SIZE_STR
+ *  - ESP_ERR_INVALID_ARG if "out" is NULL or "out_len" is less than UUID_SIZE_STR + 1
 */
 esp_err_t uuidv4_new_string(char *out, size_t out_len);
 
@@ -53,10 +53,10 @@ esp_err_t uuidv4_new(uint8_t *out, size_t out_len);
  * 
  * @param in Pointer to raw uuid buffer, must point to UUID_SIZE bytes lenght buffer
  * @param out Pointer to buffer of characters
- * @param out_let Lenght of "out" in bytes, must be greater or equal than UUID_SIZE_STR
+ * @param out_let Lenght of "out" in bytes, must be greater or equal than UUID_SIZE_STR + 1
  * @returns
  *  - ESP_OK on success
- *  - ESP_ERR_INVALID_ARG if "in" or "out" are NULL, or "out_len" is less than UUID_SIZE_STR
+ *  - ESP_ERR_INVALID_ARG if "in" or "out" are NULL, or "out_len" is less than UUID_SIZE_STR + 1
  * @note "in" must be a pointer to a buffer of length UUID_SIZE bytes, is undefined behaviour
  *       if "uid" points to a shorter buffer.
 */
@@ -86,8 +86,8 @@ esp_err_t uuid_from_string(const char *in, uint8_t *out, size_t out_len);
  * @param uid2 Pointer to raw uuid
  * @returns
  *  - 0 if both "uid1" and "uid2" are equal
- *  - -1 if "uid1" is lexically less than "uid2"
- *  - 1 if "uid1" is lexically greater than "uid2"
+ *  - -1 if "uid1" is lexicographically less than "uid2"
+ *  - 1 if "uid1" is lexicographically greater than "uid2"
  * @note Both "uid1" and "uid2" must point to a buffer of lenght UUID_SIZE bytes, is undefined
  *       behaviour if some of the parameters points to shorter buffers.
 */
